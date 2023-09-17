@@ -9,7 +9,15 @@ exports.save = (req, res) => {
     const Valor = req.body.Valor;
     const Stock = req.body.Stock;
 
-    // Consulta SQL para insertar datos en la base de datos
+    conexion.query('INSERT INTO dataproductos SET ?', {Id:Id,Fecha_de_creacion:Fecha_de_creacion,Nombre:Nombre,Categoria:Categoria,Precio:Precio,Valor:Valor,Stock:Stock},
+            (error, results)=>{
+                if(error){
+                    console.log(error);
+                }else{
+                    res.redirect('/');
+                }
+            })
+
     const sql = 'INSERT INTO dataproductos (Id, Fecha_de_creacion, Nombre, Categoria, Precio, Valor, Stock) VALUES (?, ?, ?, ?, ?, ?, ?)';
     const values = [Id, Fecha_de_creacion, Nombre, Categoria, Precio, Valor, Stock];
 
@@ -31,4 +39,23 @@ exports.save = (req, res) => {
             res.render('index.ejs', { results: results });
         });
     });
-};
+}
+
+exports.update= (req, res)=>{
+    const Id = req.body.Id;
+    const Fecha_de_creacion = new Date();
+    const Nombre = req.body.Nombre;
+    const Categoria = req.body.Categoria;
+    const Precio = req.body.Precio;
+    const Valor = req.body.Valor;
+    const Stock = req.body.Stock;
+
+    conexion.query('INSERT INTO dataproductos SET ? WHERE Id = ?', {Id:Id,Fecha_de_creacion:Fecha_de_creacion,Nombre:Nombre,Categoria:Categoria,Precio:Precio,Valor:Valor,Stock:Stock},
+    (error, results)=>{
+        if(error){
+            console.log(error);
+        }else{
+            res.redirect('/');
+        }
+    })
+}

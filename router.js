@@ -25,7 +25,21 @@ const dbConexion = require('./database/db.js');
         res.render('create');
     });
 
+    //para editar
+    router.get('/edit/:Id', (req, res)=>{
+        const Id = req.params.Id;
+        dbConexion.query('SELECT * FROM dataproductos WHERE Id=?', [Id],(error,results) => {
+            if (error) {
+                throw error;
+            } else {
+                // Renderiza la plantilla EJS y pasa los resultados de la consulta como contexto
+                res.render('edit', { user: results[0] });
+            }
+            });
+    })
+
     const controller = require('./controllers/controller.js');
     router.post('/save', controller.save);
+    router.post('/update', controller.update);
 
 module.exports = router;
