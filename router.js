@@ -14,9 +14,7 @@ const dbConexion = require('./database/db.js');
             throw error;
         } else {
             // Renderiza la plantilla EJS y pasa los resultados de la consulta como contexto
-            console.log('');
-            console.log('dentro de get route');
-            console.log(results);
+            
             res.render('index', { results: results });
         }
         });
@@ -38,6 +36,19 @@ const dbConexion = require('./database/db.js');
                 // Renderiza la plantilla EJS y pasa los resultados de la consulta como contexto
                 
                 res.render('edit', { user: results[0] });
+            }
+            });
+    });
+
+    router.get('/eliminar/:Id', (req, res) => {
+        const Id = req.params.Id;
+        dbConexion.query('DELETE FROM dataproductos WHERE Id=?', [Id],(error,results) => {
+            if (error) {
+                throw error;
+            } else {
+                // Renderiza la plantilla EJS y pasa los resultados de la consulta como contexto
+                
+                res.redirect('/');
             }
             });
     })

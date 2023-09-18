@@ -64,13 +64,13 @@
                     <td>50000</td>
                     <td>12</td>
                     <td>
-                        <a href="/edit" class="btn btn-outline-success">Editar</a>
+                        <a href="/edit/" class="btn btn-outline-success">Editar</a>
                         <a href="/eliminar" class="btn btn-outline-danger">Eliminar</a>
                     </td>
                 </tr>
                 <% results.forEach((user) => { %>
                     <tr>
-                        <td><%= user.Id %></td>
+                        <td><%= user.id %></td>
                         <td><%= user.Fecha_de_creacion %></td>
                         <td><%= user.Nombre %></td>
                         <td><%= user.Categoria %></td>
@@ -78,8 +78,8 @@
                         <td><%= user.Valor %></td>
                         <td><%= user.Stock %></td>
                         <td>
-                            <a href="/edit" class="btn btn-outline-success">Editar</a>
-                            <a href="/eliminar" class="btn btn-outline-danger">Eliminar</a>
+                            <a href="/edit/<%= user.id %>" class="btn btn-outline-success">Editar</a>
+                            <a href="/eliminar/<%= user.id %>" class="btn btn-outline-danger">Eliminar</a>
                         </td>
                     </tr>
                     <% }); %>
