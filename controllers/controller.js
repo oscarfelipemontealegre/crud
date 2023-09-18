@@ -9,14 +9,6 @@ exports.save = (req, res) => {
     const Valor = req.body.Valor;
     const Stock = req.body.Stock;
 
-    conexion.query('INSERT INTO dataproductos SET ?', {Id:Id,Fecha_de_creacion:Fecha_de_creacion,Nombre:Nombre,Categoria:Categoria,Precio:Precio,Valor:Valor,Stock:Stock},
-            (error, results)=>{
-                if(error){
-                    console.log(error);
-                }else{
-                    res.redirect('/');
-                }
-            })
 
     const sql = 'INSERT INTO dataproductos (Id, Fecha_de_creacion, Nombre, Categoria, Precio, Valor, Stock) VALUES (?, ?, ?, ?, ?, ?, ?)';
     const values = [Id, Fecha_de_creacion, Nombre, Categoria, Precio, Valor, Stock];
